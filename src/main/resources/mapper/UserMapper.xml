@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.UserMapper">
+    <insert id="addUser" parameterType="User">
+        INSERT INTO userdata (phone, account, email, password)
+        VALUES (#{phone}, #{account}, #{email}, #{password});
+    </insert>
+    
+    <select id="findAllUser" resultType="User">
+    	select * from userdata
+    </select>
+    <select id="findById" resultType="User">
+    	select * from userdata where id=#{id}
+    </select>
+    
+    <update id="updateUser" parameterType="User">
+    	update userdata
+    	set phone=#{phone},account=#{account},email=#{email}
+    	,password=#{password}
+    	where id =#{id}
+    </update>
+    
+    <delete id="deleteUser" parameterType="Integer">
+    	delete from userdata where id=#{id}
+    </delete>
+    
+</mapper>

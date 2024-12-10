@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UserBookMapper">
+    <select id="findAllBookings" resultType="com.example.demo.model.UserBook">
+        SELECT * FROM userbook;
+    </select>
+
+    <select id="findBookingsByUserId" parameterType="int" resultType="com.example.demo.model.UserBook">
+        SELECT * FROM userbook WHERE user_id = #{userId};
+    </select>
+
+    <insert id="addBooking" parameterType="com.example.demo.model.UserBook">
+        INSERT INTO userbook (user_id, bookroom, booksit, bookdate, pay)
+        VALUES (#{userId}, #{bookroom}, #{booksit}, #{bookdate}, #{pay});
+    </insert>
+
+    <update id="updateBooking" parameterType="com.example.demo.model.UserBook">
+        UPDATE userbook
+        SET bookroom = #{bookroom}, booksit = #{booksit}, bookdate = #{bookdate}, pay = #{pay}
+        WHERE id = #{id};
+    </update>
+
+    <delete id="deleteBooking" parameterType="int">
+        DELETE FROM userbook WHERE id = #{id};
+    </delete>
+</mapper>
